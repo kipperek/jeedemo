@@ -23,7 +23,7 @@ public class Distributor {
 	
 	String name;
 	
-	List<Game> games = new ArrayList<Game>();;
+	List<Game> games = new ArrayList<Game>();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

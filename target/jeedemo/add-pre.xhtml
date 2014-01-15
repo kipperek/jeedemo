@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/mojaTemplatka.xhtml">
+
+	<ui:define name="content">
+		<h2>Dodaj ulicę</h2>
+				<h:panelGrid columns="2">
+				
+					<h:form id="ulForm">
+						<h:panelGrid columns="2">
+							<h:outputText value="Wpisz nazwę ulicy" />				
+							<h:inputText id="ulName" value="#{ulBean.ul.name}" required="#{true}" />
+						</h:panelGrid>
+						<h:commandButton value=" Dodaj "
+							action="#{ulBean.addUlica}" />
+					</h:form>
+				</h:panelGrid><br/>
+		<h2>Dodaj lokatora</h2>
+				<h:panelGrid columns="2">
+				
+					<h:form id="lokForm">
+						<h:panelGrid columns="2">
+							<h:outputText value="Wpisz imie lokatora" />				
+							<h:inputText id="lokName" value="#{lokBean.lok.imie}" required="#{true}" />
+							
+							<h:outputText value="Wpisz nazwisko lokatora" />				
+							<h:inputText id="lokSurname" value="#{lokBean.lok.nazwisko}" required="#{true}" />
+						</h:panelGrid>
+						<h:commandButton value=" Dodaj "
+							action="#{lokBean.addLokator}" />
+					</h:form>
+				</h:panelGrid><br/>
+		
+		<h2>Dodaj właściciela</h2>
+				<h:panelGrid columns="2">
+				
+					<h:form id="wlasForm">
+						<h:panelGrid columns="2">
+							<h:outputText value="Wpisz imię właściciela" />				
+							<h:inputText id="wlasName" value="#{wlasBean.wlas.imie}" required="#{true}" />
+							
+							<h:outputText value="Wpisz nazwisko właściciela" />				
+							<h:inputText id="wlasSurname" value="#{wlasBean.wlas.nazwisko}" required="#{true}" />
+						</h:panelGrid>
+						<h:commandButton value=" Dodaj "
+							action="#{wlasBean.addWlasciciel}" />
+					</h:form>
+				</h:panelGrid>
+
+	</ui:define>
+
+</ui:composition>

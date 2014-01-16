@@ -70,7 +70,7 @@ a:hover {
 	width: 750px;
 	height: 45px;
 	margin: 0 auto;
-	background: #444;
+	background: blue;
 }
 
 #menu ul {
@@ -112,7 +112,7 @@ a:hover {
 
 #content {
 	float: left;
-	background: #666;
+	background: #FFF;
 	padding: 20px 0 0 20px;
 	margin-right: 20px;
 }

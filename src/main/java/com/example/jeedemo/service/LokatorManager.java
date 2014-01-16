@@ -23,4 +23,5 @@ public class LokatorManager {
 	public List<Lokator> getAllLokator() {
 		return em.createNamedQuery("lokator.all").getResultList();
 	}
+	
 }

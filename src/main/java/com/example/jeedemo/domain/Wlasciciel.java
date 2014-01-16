@@ -46,7 +46,7 @@ public class Wlasciciel {
 		this.id = id;
 	}	
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "wlasciciele")
 	public List<Budynek> getBudynki() {
 		return budynki;
 	}

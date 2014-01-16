@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.Size;
 
 /**
@@ -58,8 +57,7 @@ public class Lokator {
 		this.imie = imie;
 	}
 	
-	@OneToOne
-	@PrimaryKeyJoinColumn
+	@OneToOne(optional=false, mappedBy="lokator")
 	public Budynek getBudynek() {
 		return budynek;
 	}

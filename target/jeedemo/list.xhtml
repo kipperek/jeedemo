@@ -6,70 +6,46 @@
 	template="/templates/mojaTemplatka.xhtml">
 
 	<ui:define name="content">
-
-		<div class="post">
-			<h2 class="title">#{msg.firstPostTitle}</h2>
-			<p class="byline">
-				<small>#{msg.firstPostTime} by #{msg.byWho}</small>
-			</p>
-			<div class="entry">
-	
-<!-- 				<p>#{msg.firstPostContent}</p> -->
 				
 				<h:form>
-					<h:dataTable value="#{gameBean.allGames}" var="item">
+					<h:dataTable value="#{budBean.allBudynki}" var="item">
 			
 					
 					<h:column>
-						<f:facet name="header">${msg.listaPIN}</f:facet>
-						#{item.PIN}
+						<f:facet name="header">Nazwa budynku</f:facet>
+						#{item.nazwa}
 					</h:column>
 					
 					<h:column>
-						<f:facet name="header">${msg.listaTitle}</f:facet>
-						#{item.title}
+						<f:facet name="header">Numer budynku</f:facet>
+						#{item.numer}
 					</h:column>
 					
 					<h:column>
-						<f:facet name="header" >
-							#{msg.listaYop}
-						</f:facet>
-						
-						<h:outputText value="#{item.yop}">
-							<f:convertDateTime pattern="dd-MM-yyyy"/>	
-						</h:outputText>	
-						
+						<f:facet name="header">Ulica</f:facet>
+						#{item.ulica.name}
 					</h:column>
 					
 					<h:column>
-						<f:facet name="header">${msg.listaPrice}</f:facet>
-						#{item.price}
+						<f:facet name="header">Lokator</f:facet>
+						#{item.lokator.imie} #{item.lokator.nazwisko}
 					</h:column>
 					
 					<h:column>
-						<f:facet name="header">${msg.listaRequireAdult}</f:facet>
-						#{item.requireAdult}
-					</h:column>
-					
-					<h:column>
-						<f:facet name="header">${msg.listaNameDev}</f:facet>
-						#{item.dev.name}
-					</h:column>
-					
-					<h:column>
-						<f:facet name="header">${msg.listaNameDist}</f:facet>
-						  <ui:repeat var="dist" value="#{item.dist}">
-						 	 <h:outputText value="${dist.name}, "/>
+						<f:facet name="header">Wlasciciele</f:facet>
+						  <ui:repeat var="wlas" value="#{item.wlasciciele}">
+						 	 <h:outputText value="${wlas.imie} ${wlas.nazwisko}, "/>
 						  </ui:repeat>
 					</h:column>
-					
+					<h:column>
+                                        <f:facet name="header">Akcje</f:facet>
+                                        <h:commandLink value="Usun"
+                                                action="#{budBean.deleteBudynek}" />
+                                       
+                    </h:column>
 					</h:dataTable>
-				
+					 
 				</h:form>
-
-			</div>
-
-		</div>
 
 	</ui:define>
 

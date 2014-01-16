@@ -1,13 +1,16 @@
 package com.example.jeedemo.web;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
-import com.example.jeedemo.domain.*;
-import com.example.jeedemo.service.*;
+
+import com.example.jeedemo.domain.Lokator;
+import com.example.jeedemo.service.LokatorManager;
 
 
 @SessionScoped
@@ -33,6 +36,17 @@ public class LokatorFormBean implements Serializable{
 
 	public ListDataModel<Lokator> getAllLoks() {
 		loks.setWrappedData(lokm.getAllLokator());
+		return loks;
+	}
+	
+	public ListDataModel<Lokator> getFreeLoks() {
+		List<Lokator> newLoks = new ArrayList<Lokator>();		
+		for(Lokator l : lokm.getAllLokator()){
+			if(l.getBudynek() == null)
+				newLoks.add(l);
+		}
+		loks = new ListDataModel<Lokator>();
+		loks.setWrappedData(newLoks);
 		return loks;
 	}
 	

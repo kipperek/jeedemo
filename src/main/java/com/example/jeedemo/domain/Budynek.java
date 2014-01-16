@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -51,7 +52,7 @@ public class Budynek {
 		this.id = id;
 	}
 
-	@ManyToOne(cascade = { CascadeType.ALL })
+	@ManyToOne(cascade = { CascadeType.DETACH })
 	public Ulica getUlica() {
 		return ulica;
 	}
@@ -60,7 +61,8 @@ public class Budynek {
 		this.ulica = ulica;
 	}
 	
-	@OneToOne(mappedBy="budynek", cascade=CascadeType.ALL)
+	@OneToOne(optional=false)
+	@JoinColumn(name="LOKATOR_ID", unique=true, nullable=false, updatable=false)
 	public Lokator getLokator() {
 		return lokator;
 	}
@@ -77,7 +79,7 @@ public class Budynek {
 		this.numer = numer;
 	}
 	
-	@ManyToMany(mappedBy = "budynki")
+	@ManyToMany
 	public List<Wlasciciel> getWlasciciele() {
 		return wlasciciele;
 	}

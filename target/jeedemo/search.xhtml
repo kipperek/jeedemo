@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/mojaTemplatka.xhtml">
+
+	<ui:define name="content">
+				<h:form>
+                        Wpisz nazwe domu <h:inputText id="serach" value="#{budBean.findName}" required="#{true}" />
+                </h:form>
+				<h:form>
+					<h:dataTable value="#{budBean.budynkiByName}" var="item">
+			
+					
+					<h:column>
+						<f:facet name="header">Nazwa budynku</f:facet>
+						#{item.nazwa}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Numer budynku</f:facet>
+						#{item.numer}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Ulica</f:facet>
+						#{item.ulica.name}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Lokator</f:facet>
+						#{item.lokator.imie} #{item.lokator.nazwisko}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Wlasciciele</f:facet>
+						  <ui:repeat var="wlas" value="#{item.wlasciciele}">
+						 	 <h:outputText value="${wlas.imie} ${wlas.nazwisko}, "/>
+						  </ui:repeat>
+					</h:column>
+					<h:column>
+                                        <f:facet name="header">Akcje</f:facet>
+                                        <h:commandLink value="Usun"
+                                                action="#{budBean.deleteBudynek}" />
+                                       
+                    </h:column>
+					</h:dataTable>
+					 
+				</h:form>
+
+	</ui:define>
+
+</ui:composition>

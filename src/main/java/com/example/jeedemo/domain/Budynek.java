@@ -20,7 +20,8 @@ import javax.persistence.OneToOne;
 
 @Entity
 @NamedQueries({ 
-	@NamedQuery(name = "budynek.all", query = "Select b from Budynek b")
+	@NamedQuery(name = "budynek.all", query = "Select b from Budynek b"),
+	@NamedQuery(name = "budynek.find", query = "Select ba from Budynek ba where ba.nazwa LIKE :name")
 })
 public class Budynek {
 	

@@ -18,6 +18,7 @@ public class BudynekManager {
 
 	@PersistenceContext
 	EntityManager em;
+	String find ="";
 	
 	public void addBudynek(Budynek budynek, Long[] wlasId, Long ulId, Long lokId) {
 		budynek.setLokator(null);
@@ -43,6 +44,13 @@ public class BudynekManager {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Budynek> getBudynkiByName(String find){
+		this.find = find;
+		return em.createNamedQuery("budynek.find").setParameter("name", "%" + this.find + "%").getResultList();
+		
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Budynek> getAllBudynek() {
 		return em.createNamedQuery("budynek.all").getResultList();
 	}
@@ -51,4 +59,26 @@ public class BudynekManager {
 		   budynek = em.find(Budynek.class, budynek.getId());
            em.remove(budynek);
 	}
+	
+    public void editBudynek(Budynek changed,Long[] wlasId, Long ulId, Long lokId)
+    {
+    	changed.setLokator(null);
+    	changed.setUlica(null);
+    	changed.setWlasciciele(new ArrayList<Wlasciciel>());
+			
+			  for(Long i: wlasId)
+	          {
+	                  Wlasciciel wlas = em.find(Wlasciciel.class, i);
+	                  
+	                  changed.getWlasciciele().add(wlas);
+	          }
+	          Lokator lokator = em.find(Lokator.class, lokId);
+	          
+	          changed.setLokator(lokator);
+	          
+	          Ulica ul = em.find(Ulica.class, ulId);
+	          
+	          changed.setUlica(ul);
+            em.merge(changed);
+    }
 }

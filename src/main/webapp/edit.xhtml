@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/mojaTemplatka.xhtml">
+
+	<ui:define name="content">
+	<h2>Dodaj budynek</h2>
+				<h:form id="budynekform">
+					
+					<h:panelGrid columns="2">
+						
+						<h:outputText value="Nazwa budynku" />
+						<h:inputText id="name" value="#{budBean.budynek.nazwa}" required="#{true}">
+						</h:inputText>
+						
+						<h:outputText value="Numer budynku" />
+						<h:inputText id="number" value="#{budBean.budynek.numer}" required="#{true}">
+						</h:inputText>
+							
+						<h:outputText value="Lokator" />
+						<h:selectOneMenu value="#{budBean.lokId}">
+							<f:selectItems value="#{lokBean.freeLoks}" var="lok" 
+							  itemValue="#{lok.id}" converter="javax.faces.Long" itemLabel="#{lok.imie} #{lok.nazwisko}"  />
+						</h:selectOneMenu>
+						
+						<h:outputText value="Ulica" />
+						<h:selectOneMenu value="#{budBean.ulId}">
+							<f:selectItems value="#{ulBean.allUls}" var="ul" 
+							  itemValue="#{ul.id}" converter="javax.faces.Long" itemLabel="#{ul.name}"  />
+						</h:selectOneMenu>
+						
+						<h:outputText value="Wlasciciel" />
+						<h:selectManyListbox value="#{budBean.wlasId}"  converter="javax.faces.Long">
+							<f:selectItems value="#{wlasBean.allWlass}" 
+							  var="wlas" itemValue="#{wlas.id}" itemLabel="#{wlas.imie} #{wlas.nazwisko}" />
+						</h:selectManyListbox>
+							
+					</h:panelGrid>
+					
+					<h:panelGrid>
+							<h:messages id="messages" showDetail="#{true}"
+								showSummary="#{false}" />
+					</h:panelGrid>
+
+					<h:commandButton value=" Dodaj "
+						action="#{budBean.editBudynek}" />
+
+				</h:form>		
+
+	</ui:define>
+
+</ui:composition>

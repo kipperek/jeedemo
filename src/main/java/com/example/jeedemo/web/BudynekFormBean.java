@@ -26,6 +26,16 @@ public class BudynekFormBean implements Serializable
 	private Long ulId;
 	private Long lokId;
 	
+	private String findName = "";
+	
+	public String getFindName(){
+		return findName;
+	}
+	public void setFindName(String findName){
+		this.findName = findName;
+	}
+	
+	
 	public Long[] getWlasId() {
 		return wlasId;
 	}
@@ -67,16 +77,25 @@ public class BudynekFormBean implements Serializable
 		budynki.setWrappedData(bm.getAllBudynek());
 		return budynki;
 	}
+	
+	public ListDataModel<Budynek> getBudynkiByName() {
+		budynki.setWrappedData(bm.getBudynkiByName(findName));
+		return budynki;
+	}
 
 	// Actions
 	
 	public String addBudynek() {
 
 		bm.addBudynek(budynek, wlasId, ulId, lokId);
-		return "list";
+		return "search";
 		//return null;
 	}
 
+	public String editBudynek(){
+		bm.editBudynek(budynki.getRowData(), wlasId, ulId, lokId);
+		return "search";
+	}
 	public String deleteBudynek() {
 		Budynek budynekToDelete = budynki.getRowData();
 		bm.deleteBudynek(budynekToDelete);

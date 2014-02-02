@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/mojaTemplatka.xhtml">
+
+	<ui:define name="content">	
+		<h2>#{msg.wlasFormModTitle}</h2>
+				
+				
+					<h:form id="wlasForm">
+						<h:panelGrid columns="3">
+							<h:outputText value="#{msg.wlasFormModName}" />				
+							<h:inputText id="wlasName" value="#{wlasBean.wlas.imie}" required="#{true}" />
+							<rich:message for="wlasName" />
+							
+							<h:outputText value="#{msg.wlasFormModSurName}" />				
+							<h:inputText id="wlasSurname" value="#{wlasBean.wlas.nazwisko}" required="#{true}" />
+							<rich:message for="wlasSurname" />
+						</h:panelGrid>
+						<h:commandButton value="#{msg.modForm} "
+							action="#{wlasBean.editWlas}" />
+					</h:form>
+			
+
+	</ui:define>
+
+</ui:composition>

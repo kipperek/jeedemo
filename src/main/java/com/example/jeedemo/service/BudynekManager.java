@@ -55,6 +55,13 @@ public class BudynekManager {
 		return em.createNamedQuery("budynek.all").getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Lokator> getFreeLoks4Mod(Budynek budynek) {
+		List<Lokator> loks = em.createNamedQuery("lokator.free").getResultList();
+		loks.add(budynek.getLokator()); 
+		return loks;
+	}
+	
 	public void deleteBudynek(Budynek budynek){
 		   budynek = em.find(Budynek.class, budynek.getId());
            em.remove(budynek);

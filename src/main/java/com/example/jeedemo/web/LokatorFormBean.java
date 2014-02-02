@@ -47,7 +47,19 @@ public class LokatorFormBean implements Serializable{
 	
 	public String addLokator() {
 		lokm.addLokator(lok);
-		//return "list";
+		return "list-lokator";
+	}
+	public String deleteLokator() {
+		Lokator toDelete = loks.getRowData();
+		lokm.deleteLokator(toDelete);
 		return null;
+	}
+	public String editLokator(){
+		lokm.editLokator(this.lok);
+		return "list-lokator";
+	}
+	public String selectLokator(){
+		this.lok = loks.getRowData();
+		return "lok-mod";
 	}
 }

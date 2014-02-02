@@ -6,6 +6,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import com.example.jeedemo.domain.*;
 import com.example.jeedemo.service.*;
 
@@ -40,7 +41,19 @@ public class WlascicielFormBean implements Serializable{
 	
 	public String addWlasciciel() {
 		wlasm.addWlasciciel(wlas);
-		//return "list";
+		return "list-wlas";
+	}
+	public String deleteWlas() {
+		Wlasciciel toDelete = wlass.getRowData();
+		wlasm.deleteWlasciciel(toDelete);
 		return null;
+	}
+	public String editWlas(){
+		wlasm.editWlasciciel(this.wlas);
+		return "list-wlas";
+	}
+	public String selectWlas(){
+		this.wlas = wlass.getRowData();
+		return "wlas-mod";
 	}
 }

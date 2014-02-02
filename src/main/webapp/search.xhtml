@@ -6,43 +6,50 @@
 	template="/templates/mojaTemplatka.xhtml">
 
 	<ui:define name="content">
+	<h2>#{msg.budynekListTitle}</h2>
 				<h:form>
-                        Wpisz nazwe domu <h:inputText id="serach" value="#{budBean.findName}" required="#{true}" />
+                        #{msg.budynekListSearch} <h:inputText id="serach" value="#{budBean.findName}" required="#{true}" />
                 </h:form>
 				<h:form>
 					<h:dataTable value="#{budBean.budynkiByName}" var="item">
 			
 					
 					<h:column>
-						<f:facet name="header">Nazwa budynku</f:facet>
+						<f:facet name="header">#{msg.budynekListName}</f:facet>
 						#{item.nazwa}
 					</h:column>
 					
 					<h:column>
-						<f:facet name="header">Numer budynku</f:facet>
+						<f:facet name="header"> #{msg.budynekListNumber}</f:facet>
 						#{item.numer}
 					</h:column>
 					
 					<h:column>
-						<f:facet name="header">Ulica</f:facet>
+						<f:facet name="header"> #{msg.budynekListDate}</f:facet>
+						#{item.yob}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header"> #{msg.budynekListUl}</f:facet>
 						#{item.ulica.name}
 					</h:column>
 					
 					<h:column>
-						<f:facet name="header">Lokator</f:facet>
+						<f:facet name="header"> #{msg.budynekListLok}</f:facet>
 						#{item.lokator.imie} #{item.lokator.nazwisko}
 					</h:column>
 					
 					<h:column>
-						<f:facet name="header">Wlasciciele</f:facet>
+						<f:facet name="header"> #{msg.budynekListWlas}</f:facet>
 						  <ui:repeat var="wlas" value="#{item.wlasciciele}">
-						 	 <h:outputText value="${wlas.imie} ${wlas.nazwisko}, "/>
+						 	 <h:outputText value="${wlas.imie} ${wlas.nazwisko},"/>
 						  </ui:repeat>
 					</h:column>
 					<h:column>
-                                        <f:facet name="header">Akcje</f:facet>
-                                        <h:commandLink value="Usun"
-                                                action="#{budBean.deleteBudynek}" />
+                                        <f:facet name="header"> #{msg.actionAction}</f:facet>
+                                        <h:commandLink value="#{msg.actionDelete}"
+                                                action="#{budBean.deleteBudynek}" /><br/>
+                                        <h:commandLink value="#{msg.actionEdit}" action="#{budBean.selectBudynek}" />
                                        
                     </h:column>
 					</h:dataTable>

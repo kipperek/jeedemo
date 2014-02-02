@@ -9,7 +9,8 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({ 
-	@NamedQuery(name = "ulica.all", query = "Select u from Ulica u")
+	@NamedQuery(name = "ulica.all", query = "Select u from Ulica u"),
+	@NamedQuery(name = "ulica.isfree", query = "Select u from Ulica u WHERE u.id = :id AND u.id not in (Select bu.ulica.id from Budynek bu)")
 })
 public class Ulica {
 	

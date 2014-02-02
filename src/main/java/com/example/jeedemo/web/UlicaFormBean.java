@@ -3,7 +3,11 @@ package com.example.jeedemo.web;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -41,7 +45,49 @@ public class UlicaFormBean implements Serializable{
 	
 	public String addUlica() {
 		ulm.addUlica(ul);
-		//return "list";
+		return "list-ulica";
+	}
+	public String deleteUlica() {
+		Ulica ulToDelete = uls.getRowData();
+		ulm.deleteUlica(ulToDelete);
 		return null;
+	}
+	public String editUlica(){
+		ulm.editUlica(this.ul);
+		return "list-ulica";
+	}
+	public String selectUlica(){
+		this.ul = uls.getRowData();
+		return "ul-mod";
+	}
+	
+	public void uniqueName(FacesContext context, UIComponent component,
+			Object value) {
+
+		String name = (String) value;
+
+		for (Ulica ul : getAllUls()) {
+			if (ul.getName().equalsIgnoreCase(name)) {
+				FacesMessage message = new FacesMessage(
+						"Street with this name already exists");
+				message.setSeverity(FacesMessage.SEVERITY_ERROR);
+				throw new ValidatorException(message);
+			}
+		}
+	}
+	
+	public void uniqueNameMod(FacesContext context, UIComponent component,
+			Object value) {
+
+		String name = (String) value;
+
+		for (Ulica ul : getAllUls()) {
+			if (ul.getName().equalsIgnoreCase(name) && !name.equalsIgnoreCase(this.ul.getName())) {
+				FacesMessage message = new FacesMessage(
+						"Street with this name already exists");
+				message.setSeverity(FacesMessage.SEVERITY_ERROR);
+				throw new ValidatorException(message);
+			}
+		}
 	}
 }

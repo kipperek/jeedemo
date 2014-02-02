@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.example.jeedemo.domain.Budynek;
+import com.example.jeedemo.domain.Lokator;
 import com.example.jeedemo.service.BudynekManager;
 
 
@@ -82,6 +83,13 @@ public class BudynekFormBean implements Serializable
 		budynki.setWrappedData(bm.getBudynkiByName(findName));
 		return budynki;
 	}
+	
+	public ListDataModel<Lokator> getFreeLoks4Mod() {
+		ListDataModel<Lokator> loks = new ListDataModel<Lokator>();
+		loks.setWrappedData(bm.getFreeLoks4Mod(this.budynek));
+		return loks;
+	}
+	
 
 	// Actions
 	
@@ -91,9 +99,12 @@ public class BudynekFormBean implements Serializable
 		return "search";
 		//return null;
 	}
-
+	public String selectBudynek(){
+		this.budynek = budynki.getRowData();
+		return "edit";
+	}
 	public String editBudynek(){
-		bm.editBudynek(budynki.getRowData(), wlasId, ulId, lokId);
+		bm.editBudynek(this.budynek, wlasId, ulId, lokId);
 		return "search";
 	}
 	public String deleteBudynek() {

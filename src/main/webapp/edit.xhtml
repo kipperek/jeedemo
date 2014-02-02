@@ -7,45 +7,55 @@
 	template="/templates/mojaTemplatka.xhtml">
 
 	<ui:define name="content">
-	<h2>Dodaj budynek</h2>
+	<h2>#{msg.budynekFormModTitle}</h2>
 				<h:form id="budynekform">
 					
-					<h:panelGrid columns="2">
+					<h:panelGrid columns="3">
 						
-						<h:outputText value="Nazwa budynku" />
+						<h:outputText value="#{msg.budynekFormAddName}" />
 						<h:inputText id="name" value="#{budBean.budynek.nazwa}" required="#{true}">
+							 
 						</h:inputText>
+						<rich:message for="name" />
 						
-						<h:outputText value="Numer budynku" />
-						<h:inputText id="number" value="#{budBean.budynek.numer}" required="#{true}">
+						<h:outputText value="#{msg.budynekFormAddNumber}" />
+						<h:inputText id="number" value="#{budBean.budynek.numer}" required="#{true}"> 
 						</h:inputText>
+						<rich:message for="number" />
 							
-						<h:outputText value="Lokator" />
-						<h:selectOneMenu value="#{budBean.lokId}">
-							<f:selectItems value="#{lokBean.freeLoks}" var="lok" 
+						<h:outputText value="#{msg.budynekFormAddDate}" />
+						<rich:calendar value="#{budBean.budynek.yob}" id="yob" locale="PL" required="#{true}"
+                  		  	popup="true" datePattern="dd.MM.yyyy"
+                    		showApplyButton="false" cellWidth="24px" cellHeight="22px" style="width:200px"
+                    		disabled="false">
+                    	   
+                		</rich:calendar>	
+						<rich:message for="yob" />
+						
+						<h:outputText value="#{msg.budynekFormAddLok}" />
+						<h:selectOneMenu value="#{budBean.lokId}" required="#{true}" id="lokator">
+							<f:selectItems value="#{budBean.freeLoks4Mod}" var="lok" 
 							  itemValue="#{lok.id}" converter="javax.faces.Long" itemLabel="#{lok.imie} #{lok.nazwisko}"  />
 						</h:selectOneMenu>
+						<rich:message for="lokator" />
 						
-						<h:outputText value="Ulica" />
-						<h:selectOneMenu value="#{budBean.ulId}">
+						<h:outputText value="#{msg.budynekFormAddUl}" />
+						<h:selectOneMenu value="#{budBean.ulId}" required="#{true}"  id="ulica">
 							<f:selectItems value="#{ulBean.allUls}" var="ul" 
 							  itemValue="#{ul.id}" converter="javax.faces.Long" itemLabel="#{ul.name}"  />
-						</h:selectOneMenu>
 						
-						<h:outputText value="Wlasciciel" />
-						<h:selectManyListbox value="#{budBean.wlasId}"  converter="javax.faces.Long">
+						</h:selectOneMenu>
+						<rich:message for="ulica" />
+						
+						<h:outputText value="#{msg.budynekFormAddWlas}" />
+						<h:selectManyListbox value="#{budBean.wlasId}"  required="#{true}" converter="javax.faces.Long" id="wlasciciele">
 							<f:selectItems value="#{wlasBean.allWlass}" 
 							  var="wlas" itemValue="#{wlas.id}" itemLabel="#{wlas.imie} #{wlas.nazwisko}" />
 						</h:selectManyListbox>
-							
-					</h:panelGrid>
-					
-					<h:panelGrid>
-							<h:messages id="messages" showDetail="#{true}"
-								showSummary="#{false}" />
+						<rich:message for="wlasciciele" />
 					</h:panelGrid>
 
-					<h:commandButton value=" Dodaj "
+					<h:commandButton value=" #{msg.modForm} "
 						action="#{budBean.editBudynek}" />
 
 				</h:form>		

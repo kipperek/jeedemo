@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/mojaTemplatka.xhtml">
+
+	<ui:define name="content">
+				<h2>#{msg.lokListTitle}</h2>
+				<h:form>
+					<h:dataTable value="#{lokBean.allLoks}" var="item">
+			
+					
+					<h:column>
+						<f:facet name="header">#{msg.lokListName}</f:facet>
+						#{item.imie}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header"> #{msg.lokListSurName}</f:facet>
+						#{item.nazwisko}
+					</h:column>
+					<h:column>
+                                        <f:facet name="header">#{msg.actionAction}</f:facet>
+                                        <h:commandLink value="#{msg.actionDelete}"
+                                                action="#{lokBean.deleteLokator}" /><br/>
+                                        <h:commandLink value="#{msg.actionEdit}" action="#{lokBean.selectLokator}" />
+                                       
+                    </h:column>
+					</h:dataTable>
+					 
+				</h:form>
+
+	</ui:define>
+
+</ui:composition>

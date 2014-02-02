@@ -4,6 +4,7 @@ package com.example.jeedemo.domain;
 // many to many - distributor
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,6 +18,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Past;
 
 @Entity
 @NamedQueries({ 
@@ -29,6 +33,7 @@ public class Budynek {
 
 	String nazwa;
 	String numer;
+	Date yob;
 	
 	Ulica ulica;
 	Lokator lokator;
@@ -95,6 +100,16 @@ public class Budynek {
 
 	public void setNazwa(String nazwa) {
 		this.nazwa = nazwa;
+	}
+	
+	@Past
+	@Temporal(TemporalType.DATE)
+	public Date getYob() {
+		return yob;
+	}
+
+	public void setYob(Date yob) {
+		this.yob = yob;
 	}
 	
 	

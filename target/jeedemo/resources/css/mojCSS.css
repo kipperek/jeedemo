@@ -38,7 +38,7 @@ a:hover {
 /* Header */
 
 #header {
-	width: 700px;
+	width: 900px;
 	height: 65px;
 	margin: 0 auto;
 }
@@ -67,7 +67,7 @@ a:hover {
 /* Menu */
 
 #menu {
-	width: 750px;
+	width: 900px;
 	height: 45px;
 	margin: 0 auto;
 	background: #DDD;
@@ -87,7 +87,7 @@ a:hover {
 	display: block;
 	float: left;
 	height: 29px;
-	padding: 11px 30px 0 30px;
+	padding: 11px 15px 0 15px;
 	text-decoration: none;
 	font-weight: bold;
 	color: #333333;

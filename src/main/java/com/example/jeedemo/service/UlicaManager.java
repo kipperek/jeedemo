@@ -25,4 +25,15 @@ public class UlicaManager {
 	public List<Ulica> getAllUlica() {
 		return em.createNamedQuery("ulica.all").getResultList();
 	}
+	
+	public void deleteUlica(Ulica ulica){
+		   ulica = em.find(Ulica.class, ulica.getId());
+		   if(em.createNamedQuery("ulica.isfree").setParameter("id", ulica.getId()).getResultList().size() > 0)
+			   em.remove(ulica);
+	}
+	
+	public void editUlica(Ulica changed)
+	{
+		em.merge(changed);
+	}
 }

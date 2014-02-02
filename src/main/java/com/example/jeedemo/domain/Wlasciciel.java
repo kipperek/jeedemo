@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({ 
@@ -54,7 +55,7 @@ public class Wlasciciel {
 	public void setBudynki(List<Budynek> budynki) {
 		this.budynki= budynki;
 	}
-
+	@Size(min = 2)
 	public String getImie() {
 		return imie;
 	}
@@ -62,7 +63,7 @@ public class Wlasciciel {
 	public void setImie(String imie) {
 		this.imie = imie;
 	}
-
+	@Size(min = 2)
 	public String getNazwisko() {
 		return nazwisko;
 	}

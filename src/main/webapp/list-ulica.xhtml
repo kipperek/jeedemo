@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/mojaTemplatka.xhtml">
+
+	<ui:define name="content">
+				<h2>#{msg.ulListTitle}</h2>
+				<h:form>
+					<h:dataTable value="#{ulBean.allUls}" var="item">
+			
+					
+					<h:column>
+						<f:facet name="header">#{msg.ulListName}</f:facet>
+						#{item.name}
+					</h:column>
+					
+					<h:column>
+                                        <f:facet name="header">#{msg.actionAction}</f:facet>
+                                        <h:commandLink value="#{msg.actionDelete}"
+                                                action="#{ulBean.deleteUlica}" /><br/>
+                                        <h:commandLink value="#{msg.actionEdit}" action="#{ulBean.selectUlica}" />
+                                       
+                    </h:column>
+					</h:dataTable>
+					 
+				</h:form>
+
+	</ui:define>
+
+</ui:composition>

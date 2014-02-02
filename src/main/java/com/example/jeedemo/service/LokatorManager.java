@@ -47,5 +47,14 @@ public class LokatorManager {
 		return newLoks;
 		
 	}
+	public void deleteLokator(Lokator lokator){
+		   lokator = em.find(Lokator.class, lokator.getId());
+		   if(em.createNamedQuery("lokator.isfree").setParameter("id", lokator.getId()).getResultList().size() > 0)
+			   em.remove(lokator);
+	}
+	public void editLokator(Lokator changed)
+	{
+		em.merge(changed);
+	}
 	
 }

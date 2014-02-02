@@ -7,49 +7,55 @@
 	template="/templates/mojaTemplatka.xhtml">
 
 	<ui:define name="content">
-		<h2>Dodaj ulicę</h2>
-				<h:panelGrid columns="2">
+		<h2>#{msg.ulFormAddTitle}</h2>
+				
 				
 					<h:form id="ulForm">
-						<h:panelGrid columns="2">
-							<h:outputText value="Wpisz nazwę ulicy" />				
-							<h:inputText id="ulName" value="#{ulBean.ul.name}" required="#{true}" />
+						<h:panelGrid columns="3">
+							<h:outputText value="#{msg.ulFormAddName}" />				
+							<h:inputText id="ulName" value="#{ulBean.ul.name}" required="#{true}" validator="#{ulBean.uniqueName}"/>
+							<rich:message for="ulName" />
 						</h:panelGrid>
-						<h:commandButton value=" Dodaj "
+						<h:commandButton value=" #{msg.addForm} "
 							action="#{ulBean.addUlica}" />
 					</h:form>
-				</h:panelGrid><br/>
-		<h2>Dodaj lokatora</h2>
-				<h:panelGrid columns="2">
+				<br/>
+				
+		<h2>#{msg.lokFormAddTitle}</h2>
+				
 				
 					<h:form id="lokForm">
-						<h:panelGrid columns="2">
-							<h:outputText value="Wpisz imie lokatora" />				
+						<h:panelGrid columns="3">
+							<h:outputText value="#{msg.lokFormAddName}" />				
 							<h:inputText id="lokName" value="#{lokBean.lok.imie}" required="#{true}" />
+							<rich:message for="lokName" />
 							
-							<h:outputText value="Wpisz nazwisko lokatora" />				
+							<h:outputText value="#{msg.lokFormAddSurName}" />				
 							<h:inputText id="lokSurname" value="#{lokBean.lok.nazwisko}" required="#{true}" />
+							<rich:message for="lokSurname" />
 						</h:panelGrid>
-						<h:commandButton value=" Dodaj "
+						<h:commandButton value=" #{msg.addForm} "
 							action="#{lokBean.addLokator}" />
 					</h:form>
-				</h:panelGrid><br/>
+				<br/>
 		
-		<h2>Dodaj właściciela</h2>
-				<h:panelGrid columns="2">
+		<h2>#{msg.wlasFormAddTitle}</h2>
+				
 				
 					<h:form id="wlasForm">
-						<h:panelGrid columns="2">
-							<h:outputText value="Wpisz imię właściciela" />				
+						<h:panelGrid columns="3">
+							<h:outputText value="#{msg.wlasFormAddName}" />				
 							<h:inputText id="wlasName" value="#{wlasBean.wlas.imie}" required="#{true}" />
+							<rich:message for="wlasName" />
 							
-							<h:outputText value="Wpisz nazwisko właściciela" />				
+							<h:outputText value="#{msg.wlasFormAddSurName}" />				
 							<h:inputText id="wlasSurname" value="#{wlasBean.wlas.nazwisko}" required="#{true}" />
+							<rich:message for="wlasSurname" />
 						</h:panelGrid>
-						<h:commandButton value=" Dodaj "
+						<h:commandButton value=" #{msg.addForm} "
 							action="#{wlasBean.addWlasciciel}" />
 					</h:form>
-				</h:panelGrid>
+				
 
 	</ui:define>
 

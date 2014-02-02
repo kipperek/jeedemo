@@ -18,7 +18,9 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @NamedQueries({ 
-	@NamedQuery(name = "lokator.all", query = "Select l from Lokator l")
+	@NamedQuery(name = "lokator.all", query = "Select l from Lokator l"),
+	@NamedQuery(name = "lokator.isfree", query = "Select l from Lokator l WHERE l.id = :id AND l.id not in (Select bu.lokator.id from Budynek bu)"),
+	@NamedQuery(name = "lokator.free", query = "Select l from Lokator l WHERE l.id not in (Select bu.lokator.id from Budynek bu)")
 })
 public class Lokator {
 	
